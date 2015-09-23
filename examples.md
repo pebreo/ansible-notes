@@ -1,0 +1,41 @@
+
+
+# Example 1
+```
+
+# hosts
+[myhosts]
+localhost
+
+# myfile.txt
+some content here
+
+# example1.yml
+ - name: My example local play
+   hosts: localhost
+   connection: local
+   vars:
+      - myvar: 123
+      - myvar2: hola mundo
+
+   tasks:
+       - debug: var={{myvar}}
+
+       - name: another task with a name
+         shell: echo 'hello world'
+
+       - name: my tast 1
+         shell: cat myfile.txt
+         register: myvar3
+
+       - name: my task 2
+         shell: echo 'the contents {{myvar3.stdout}}'
+         when: myvar3 is defined
+
+
+       - name: my task 3
+         shell: echo '{{myvar4}}'
+         when: myvar3 is defined
+
+$ apb -i hosts -e "myvar4='hi there'" example1.yml
+```
