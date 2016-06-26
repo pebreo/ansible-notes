@@ -105,3 +105,27 @@ ansible vagrant inventory
 #localhost              ansible_connection=local 
 vagrant host_key_checking=False ansible_ssh_user=vagrant ansible_ssh_host=192.168.23.13 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key 
 ```
+
+what are ansible roles?
+* they are top-level folders where you can put playbooks
+
+what are playbooks?
+* they contains tasks like copy, shell, apt
+
+what's inside a playbook?
+* hosts - e.g. all, or a name defined in 'hosts' file
+* vars - these are scoped for a whole runthrough, that is, one ansible-playbook execution
+* tasks - the tasks to be run
+* handlers - a task that is called from another task. can be put in a separate file
+
+what are tasks?
+* the smallest unit of ansible playbooks
+
+what is ansible task hiearchy?
+* very top: site.yml
+* then: roles
+* then: playbooks
+* finally: tasks; handlers (same level)
+
+what is an example?
+https://github.com/pebreo/ansible-vagrant-wordpress/
